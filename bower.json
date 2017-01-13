@@ -4,9 +4,9 @@
   "private": true,
   "dependencies": {
     "tangere": "TangereJs/tangere#0.8-preview",
-    "at-doc-viewer": "TangereJs/at-doc-viewer#0.8-preview",   
+    "at-doc-viewer": "TangereJs/at-doc-viewer#0.8-preview",
     "iron-flex-layout": "PolymerElements/iron-flex-layout#master",
-    "iron-icons": "PolymerElements/iron-icons#master",    
-    "paper-styles": "PolymerElements/paper-styles#master"
+    "iron-icons": "PolymerElements/iron-icons#master",
+    "paper-styles": "TangereJs/paper-styles#0.8-preview"
   }
 }

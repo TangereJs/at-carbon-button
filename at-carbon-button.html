@@ -140,7 +140,9 @@ Custom property | Description | Default
       is: 'at-carbon-button',
 
       behaviors: [
-        Polymer.PaperButtonBehavior
+        Polymer.IronButtonState,
+        Polymer.IronControlState,
+        Polymer.PaperButtonBehaviorImpl
       ],
 
       properties: {
@@ -171,6 +173,7 @@ Custom property | Description | Default
       @event transitionend
       Event param: {{node: Object}} detail Contains the animated node.
       */
+      
     });
   </script>
 </dom-module>

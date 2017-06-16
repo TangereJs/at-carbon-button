@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>at-carbon-button demo page</title>
+
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="../../at-theme/at-theme.html">
+    <link rel="import" href="../at-carbon-button.html">
+
+    <style is="custom-style">
+      .row {
+        @apply(--layout-horizontal);
+        margin-top: 32px;
+      }
+
+      .demo-container {
+        margin: 0 8px;
+        padding: 8px;
+        border-width: 1px;
+        border-style: solid;
+        border-color: var(--paper-purple-100, black);
+        @apply(--layout-flex-3);
+      }
+
+      .demo-title {
+        @apply(--paper-font-body1);
+        font-size: 18px;
+        font-weight: 600;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="row">
+      <div class="demo-container">
+        <h4 class="demo-title">Inner html, no icon, no label</h4>
+        <at-carbon-button raised>InnerHTML: Lorem ipsum</at-carbon-button>
+      </div>
+
+      <div class="demo-container">
+        <h4 class="demo-title">Inner html, with icon, no label</h4>
+        <at-carbon-button raised icon="now:wrench">InnerHTML: Lorem ipsum</at-carbon-button>
+      </div>
+
+      <div class="demo-container">
+        <h4 class="demo-title">Inner html, no icon, with label</h4>
+        <at-carbon-button raised label="Label: Lorem ipsum">InnerHTML: Lorem ipsum</at-carbon-button>
+      </div>
+
+      <div class="demo-container">
+        <h4 class="demo-title">Inner html, with icon, with label</h4>
+        <at-carbon-button raised icon="now:wrench" label="Label: Lorem ipsum">InnerHTML: Lorem ipsum</at-carbon-button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="demo-container">
+        <h4 class="demo-title">No inner html, with icon, no label</h4>
+        <at-carbon-button raised icon="now:wrench"></at-carbon-button>
+      </div>
+
+      <div class="demo-container">
+        <h4 class="demo-title">No inner html, no icon, with label</h4>
+        <at-carbon-button raised label="Label: Lorem ipsum"></at-carbon-button>
+      </div>
+
+      <div class="demo-container">
+        <h4 class="demo-title">No inner html, with icon, with label</h4>
+        <at-carbon-button raised icon="now:wrench" label="Label: Lorem ipsum"></at-carbon-button>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener('WebComponentsReady', function() {
+
+      });
+    </script>
+  </body>
+
+</html>

@@ -12,6 +12,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="../paper-behaviors/paper-button-behavior.html">
 <link rel="import" href="../paper-material/paper-material.html">
+<link rel="import" href="../at-carbon-icon/at-carbon-icon.html" />
 
 <!--
 Material design: [Buttons](https://www.google.com/design/spec/components/buttons.html)
@@ -130,9 +131,24 @@ Custom property | Description | Default
       paper-ripple {
         color: var(--at-carbon-button-ink-color);
       }
+
+      .button-label {
+        @apply(--paper-font-body1);
+      }
+      .button-label.with-icon {
+        margin-left: 8px;
+      }
     </style>
 
-    <content></content>
+    <template is="dom-if" if="[[_showInnerHtml(icon, label)]]">
+      <content></content>      
+    </template>
+    <template is="dom-if" if="[[_showIconAndLabel(icon, label)]]">
+      <div>
+        <at-carbon-icon hidden$="[[!icon]]" icon="[[icon]]"></at-carbon-icon>
+        <span class$="[[_computeClassList(icon)]]" hidden$="[[!label]]">[[label]]</span>
+      </div>
+    </template>
   </template>
 
   <script>
@@ -154,6 +170,30 @@ Custom property | Description | Default
           reflectToAttribute: true,
           value: false,
           observer: '_calculateElevation'
+        },
+
+        /**
+         * button label
+         * 
+         * @property label
+         * @type String
+         * @default ""
+         */
+        label: {
+          type: String,
+          value: ""          
+        },
+
+        /**
+         * button icon
+         * 
+         * @property icon
+         * @type String
+         * @default ""
+         */
+        icon: {
+          type: String,
+          value: ""
         }
       },
 
@@ -163,6 +203,22 @@ Custom property | Description | Default
         } else {
           Polymer.PaperButtonBehaviorImpl._calculateElevation.apply(this);
         }
+      },
+
+      _showInnerHtml: function(icon, label) {
+        return !icon && !label;
+      },
+
+      _showIconAndLabel: function(icon, label) {
+        return icon || label;
+      },
+
+      _computeClassList: function(icon) {
+        var list = [ 'button-label' ];
+        if (icon) {
+          list.push('with-icon');
+        }
+        return list.join(" ");
       }
 
       /**

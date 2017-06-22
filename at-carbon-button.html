@@ -132,7 +132,18 @@ Custom property | Description | Default
         color: var(--at-carbon-button-ink-color);
       }
 
+      .horizontal-layout {
+        @apply(--layout-horizontal);
+      }
+
+      .button-icon {
+        display: block;
+        left: 0;
+      }
+
       .button-label {
+        @apply(--layout-flex);
+        @apply(--layout-self-center);
         @apply(--paper-font-body1);
         vertical-align: middle;
       }
@@ -145,8 +156,8 @@ Custom property | Description | Default
       <content></content>      
     </template>
     <template is="dom-if" if="[[_showIconAndLabel(icon, label)]]">
-      <div>
-        <at-carbon-icon hidden$="[[!icon]]" icon="[[icon]]"></at-carbon-icon>
+      <div class="horizontal-layout">
+        <at-carbon-icon class="button-icon" hidden$="[[!icon]]" icon="[[icon]]"></at-carbon-icon>
         <span class$="[[_computeClassList(icon)]]" hidden$="[[!label]]">[[label]]</span>
       </div>
     </template>

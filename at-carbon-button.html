@@ -11,7 +11,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../tangere/tangere.html">
 <link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="../paper-behaviors/paper-button-behavior.html">
-<link rel="import" href="../paper-material/paper-material.html">
+<link rel="import" href="../paper-styles/paper-styles.html" />
 <link rel="import" href="../at-carbon-icon/at-carbon-icon.html" />
 
 <!--
@@ -84,7 +84,7 @@ Custom property | Description | Default
 
 <dom-module id="at-carbon-button">
   <template strip-whitespace>
-    <style include="paper-material">
+    <style>
       :host {
         display: inline-block;
         position: relative;
@@ -107,6 +107,11 @@ Custom property | Description | Default
 
         @apply(--paper-font-common-base);
         @apply(--at-carbon-button);
+        @apply(--shadow-elevation-2dp);
+      }
+
+      :host(:active) {
+        @apply(--shadow-elevation-4dp);
       }
 
       :host([raised].keyboard-focus) {
@@ -124,44 +129,36 @@ Custom property | Description | Default
         color: #a8a8a8;
         cursor: auto;
         pointer-events: none;
+        box-shadow: none;
 
         @apply(--at-carbon-button-disabled);
       }
 
-      paper-ripple {
-        color: var(--at-carbon-button-ink-color);
-      }
-
-      .horizontal-layout {
-        @apply(--layout-horizontal);
+      .button-layout {
+        display: flex;
+        flex-direction: row;
       }
 
       .button-icon {
-        display: block;
-        left: 0;
+
       }
 
       .button-label {
-        @apply(--layout-flex);
+        flex: 1;
         @apply(--layout-self-center);
-        @apply(--paper-font-body1);
+        @apply(--at-form-label-font);
         vertical-align: middle;
-        white-space: nowrap;
+        
       }
+
       .button-label.with-icon {
         margin-left: 8px;
       }
     </style>
 
-    <template is="dom-if" if="[[_showInnerHtml(icon, label)]]">
-      <content></content>      
-    </template>
-    <template is="dom-if" if="[[_showIconAndLabel(icon, label)]]">
-      <div class="horizontal-layout">
-        <at-carbon-icon class="button-icon" hidden$="[[!icon]]" icon="[[icon]]"></at-carbon-icon>
-        <span class$="[[_computeClassList(icon)]]" hidden$="[[!label]]">[[label]]</span>
-      </div>
-    </template>
+    <!-- TODO: More testing required to figure out how to make button work in Edge and IE11 -->
+
+    <!-- <div hidden><content id="content"></content></div> -->
   </template>
 
   <script>
@@ -232,7 +229,45 @@ Custom property | Description | Default
           list.push('with-icon');
         }
         return list.join(" ");
+      },
+
+      attached: function() {
+        var label = this.label;
+
+        // text innerHTML or innerText for text content
+        // if (this.textContent !== "") {
+        //   label = this.textContent;
+        // }
+
+        this._renderContent(this.icon, label);
+      },
+
+      _renderContent: function(icon, label) {
+        var buttonLayout = document.createElement('div');
+        Polymer.dom(buttonLayout).classList.add('button-layout');
+
+        if (icon) {
+          var buttonIcon = document.createElement('at-carbon-icon');
+          Polymer.dom(buttonIcon).classList.add('button-icon');
+          buttonIcon.icon = icon;
+
+          Polymer.dom(buttonLayout).appendChild(buttonIcon);
+        }
+
+        if (label) {
+          var buttonLabel = document.createElement('span');
+          Polymer.dom(buttonLabel).classList.add('button-label');
+          if (icon) {
+            Polymer.dom(buttonLabel).classList.add('with-icon');
+          }
+          buttonLabel.textContent = label;
+
+          Polymer.dom(buttonLayout).appendChild(buttonLabel);
+        }
+
+        Polymer.dom(this.root).appendChild(buttonLayout);
       }
+
 
       /**
       Fired when the animation finishes.

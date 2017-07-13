@@ -107,19 +107,11 @@ Custom property | Description | Default
 
         @apply(--paper-font-common-base);
         @apply(--at-carbon-button);
+        @apply(--shadow-elevation-2dp);
       }
 
-      :host([raised]) {
-        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
-                    0 1px 5px 0 rgba(0, 0, 0, 0.12),
-                    0 3px 1px -2px rgba(0, 0, 0, 0.2);
-      }
-
-      :host(:active),
-      :host([active]) {
-        box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14),
-                    0 1px 10px 0 rgba(0, 0, 0, 0.12),
-                    0 2px 4px -1px rgba(0, 0, 0, 0.4);
+      :host(:active) {
+        @apply(--shadow-elevation-4dp);
       }
 
       :host([raised].keyboard-focus) {
@@ -164,7 +156,9 @@ Custom property | Description | Default
       }
     </style>
 
-    <div hidden><content id="content"></content></div>
+    <!-- TODO: More testing required to figure out how to make button work in Edge and IE11 -->
+
+    <!-- <div hidden><content id="content"></content></div> -->
   </template>
 
   <script>
@@ -173,8 +167,8 @@ Custom property | Description | Default
 
       behaviors: [
         Polymer.IronButtonState,
-        Polymer.IronControlState
-        // Polymer.PaperButtonBehaviorImpl
+        Polymer.IronControlState,
+        Polymer.PaperButtonBehaviorImpl
       ],
 
       properties: {
@@ -184,7 +178,8 @@ Custom property | Description | Default
         raised: {
           type: Boolean,
           reflectToAttribute: true,
-          value: false
+          value: false,
+          observer: '_calculateElevation'
         },
 
         /**
@@ -211,8 +206,6 @@ Custom property | Description | Default
           value: ""
         }
       },
-
-      observers: [ '_renderContent(icon, label)'],
 
       _calculateElevation: function() {
         if (!this.raised) {
@@ -242,9 +235,9 @@ Custom property | Description | Default
         var label = this.label;
 
         // text innerHTML or innerText for text content
-        if (this.textContent !== "") {
-          label = this.textContent;
-        }
+        // if (this.textContent !== "") {
+        //   label = this.textContent;
+        // }
 
         this._renderContent(this.icon, label);
       },
@@ -272,7 +265,6 @@ Custom property | Description | Default
           Polymer.dom(buttonLayout).appendChild(buttonLabel);
         }
 
-        Polymer.dom(this.root).innerHTML = '';
         Polymer.dom(this.root).appendChild(buttonLayout);
       }
 

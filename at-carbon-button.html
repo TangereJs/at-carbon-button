@@ -85,7 +85,7 @@ Custom property | Description | Default
 <dom-module id="at-carbon-button">
   <template strip-whitespace>
     <style include="paper-material">
-      :host {
+       :host {
         display: inline-block;
         position: relative;
         box-sizing: border-box;
@@ -109,17 +109,17 @@ Custom property | Description | Default
         @apply(--at-carbon-button);
       }
 
-      :host([raised].keyboard-focus) {
+       :host([raised].keyboard-focus) {
         font-weight: bold;
         @apply(--at-carbon-button-raised-keyboard-focus);
       }
 
-      :host(:not([raised]).keyboard-focus) {
+       :host(:not([raised]).keyboard-focus) {
         font-weight: bold;
         @apply(--at-carbon-button-flat-keyboard-focus);
       }
 
-      :host([disabled]) {
+       :host([disabled]) {
         background: #eaeaea;
         color: #a8a8a8;
         cursor: auto;
@@ -145,16 +145,20 @@ Custom property | Description | Default
         @apply(--layout-flex);
         @apply(--layout-self-center);
         @apply(--paper-font-body1);
+        @apply(--at-form-label-font);
         vertical-align: middle;
         white-space: nowrap;
       }
+
       .button-label.with-icon {
         margin-left: 8px;
       }
     </style>
 
     <template is="dom-if" if="[[_showInnerHtml(icon, label)]]">
-      <content></content>      
+      <div class="button-label">
+        <content></content>
+      </div>
     </template>
     <template is="dom-if" if="[[_showIconAndLabel(icon, label)]]">
       <div class="horizontal-layout">
@@ -194,7 +198,7 @@ Custom property | Description | Default
          */
         label: {
           type: String,
-          value: ""          
+          value: ""
         },
 
         /**
@@ -227,7 +231,7 @@ Custom property | Description | Default
       },
 
       _computeClassList: function(icon) {
-        var list = [ 'button-label' ];
+        var list = ['button-label'];
         if (icon) {
           list.push('with-icon');
         }
@@ -242,7 +246,7 @@ Custom property | Description | Default
       @event transitionend
       Event param: {{node: Object}} detail Contains the animated node.
       */
-      
+
     });
   </script>
 </dom-module>

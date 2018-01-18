@@ -1,0 +1,112 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>at-carbon-button tests</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+  <script src="../../web-component-tester/browser.js"></script>
+  <link rel="import" href="../at-carbon-button.html">
+  <link rel="import" href="../../iron-test-helpers/iron-test-helpers.html" />
+</head>
+
+<body>
+  <test-fixture id="propertyTests">
+    <template>
+      <at-carbon-button></at-carbon-button>
+    </template>
+  </test-fixture>
+
+  <script>
+    suite('ui interaction tests', function() {
+
+      function assertRaisedValue(elt, raisedValue) {
+        // check elevation attribute value
+        var hasAttr = elt.hasAttribute('elevation');
+        assert.equal(hasAttr, true);
+
+        var attrVal = elt.getAttribute('elevation');
+        if (!raisedValue) {
+          assert.equal(attrVal, 0);
+
+        } else {
+          assert.equal(attrVal, 1);
+        }
+      }
+
+      function assertLabelValue(elt, labelValue) {
+        if (!elt._showIconAndLabel(elt.icon, elt.label)) return;
+
+        var labelElt = Polymer.dom(elt.root).querySelector('.button-label');
+        assert.isNotNull(labelElt);
+
+        assert.equal(labelElt.textContent, labelValue);
+
+        var hasAttr = labelElt.hasAttribute('hidden');
+        assert.equal(hasAttr, !labelValue);
+      }
+
+      function assertIconValue(elt, iconValue) {
+        if (!elt._showIconAndLabel(elt.icon, elt.label)) return;
+
+        var iconElt = Polymer.dom(elt.root).querySelector('.button-icon');
+        assert.isNotNull(iconElt);
+
+        assert.equal(iconElt.icon, iconValue);
+
+        var hasAttr = iconElt.hasAttribute('hidden');
+        assert.equal(hasAttr, !iconValue);
+      }
+
+      test('ui interaction test', function() {
+        var elt = fixture('propertyTests');
+
+        assertRaisedValue(elt, false);
+        assertLabelValue(elt, '');
+        assertIconValue(elt, '');
+
+        elt.raised = true;
+
+        assertRaisedValue(elt, true);
+        assertLabelValue(elt, '');
+        assertIconValue(elt, '');
+
+        elt.raised = false;
+
+        assertRaisedValue(elt, false);
+        assertLabelValue(elt, '');
+        assertIconValue(elt, '');
+
+        elt.label = "lorem ipsum";
+        Polymer.dom.flush();
+
+        assertRaisedValue(elt, false);
+        assertLabelValue(elt, 'lorem ipsum');
+        assertIconValue(elt, '');
+
+        elt.icon = "now:trash";
+        Polymer.dom.flush();
+
+        assertRaisedValue(elt, false);
+        assertLabelValue(elt, 'lorem ipsum');
+        assertIconValue(elt, 'now:trash');
+
+        elt.label = "";
+        Polymer.dom.flush();
+
+        assertRaisedValue(elt, false);
+        assertLabelValue(elt, '');
+        assertIconValue(elt, 'now:trash');
+
+        elt.icon = "";
+        Polymer.dom.flush();  
+
+        assertRaisedValue(elt, false);
+        assertLabelValue(elt, '');
+        assertIconValue(elt, '');
+      });
+
+    });
+  </script>
+</body>
+</html>

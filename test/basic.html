@@ -1,0 +1,601 @@
+<!doctype html>
+<html>
+  <head>
+  <meta charset="UTF-8">
+  <title>at-carbon-button tests</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+  <script src="../../web-component-tester/browser.js"></script>
+  <link rel="import" href="../at-carbon-button.html">
+  <link rel="import" href="../../iron-test-helpers/iron-test-helpers.html" />
+  </head>
+  <body>
+    <test-fixture id="initial">
+      <template>
+        <at-carbon-button></at-carbon-button>
+      </template>
+    </test-fixture>
+
+    <!-- 
+      raised fixtures 
+    -->
+    <test-fixture id="raisedIsUndefined">
+      <template>
+        <at-carbon-button raised="undefined"></at-carbon-button>
+      </template>
+    </test-fixture>
+    <test-fixture id="raisedIsNull">
+      <template>
+        <at-carbon-button raised="null"></at-carbon-button>
+      </template>
+    </test-fixture>
+    <test-fixture id="raisedIsTrue">
+      <template>
+        <at-carbon-button raised="true"></at-carbon-button>
+      </template>
+    </test-fixture>
+    <test-fixture id="raisedIsFalse">
+      <template>
+        <at-carbon-button raised="false"></at-carbon-button>
+      </template>
+    </test-fixture>
+    <test-fixture id="raisedIs-42">
+      <template>
+        <at-carbon-button raised="-42"></at-carbon-button>
+      </template>
+    </test-fixture>
+    <test-fixture id="raisedIs0">
+      <template>
+        <at-carbon-button raised="0"></at-carbon-button>
+      </template>
+    </test-fixture>
+    <test-fixture id="raisedIs42">
+      <template>
+        <at-carbon-button raised="42"></at-carbon-button>
+      </template>
+    </test-fixture>
+    <test-fixture id="raisedIsEmpty">
+      <template>
+        <at-carbon-button raised=""></at-carbon-button>
+      </template>
+    </test-fixture>
+    <test-fixture id="raisedIsLorem_ipsum">
+      <template>
+        <at-carbon-button raised="lorem ipsum"></at-carbon-button>
+      </template>
+    </test-fixture>
+    <test-fixture id="raisedIs{}">
+      <template>
+        <at-carbon-button raised="{}"></at-carbon-button>
+      </template>
+    </test-fixture>
+    <test-fixture id="raisedIs[]">
+      <template>
+        <at-carbon-button raised="[]"></at-carbon-button>
+      </template>
+    </test-fixture>
+    <test-fixture id="raisedIsFunction">
+      <template>
+        <at-carbon-button raised="function f() { return undefined; }"></at-carbon-button>
+      </template>
+    </test-fixture>
+
+    <!-- 
+      label fixtures 
+    -->
+    <test-fixture id="labelIsUndefined">
+      <template>
+        <at-carbon-button label="undefined"></at-carbon-button>
+      </template>
+    </test-fixture>
+    <test-fixture id="labelIsNull">
+      <template>
+        <at-carbon-button label="null"></at-carbon-button>
+      </template>
+    </test-fixture>
+    <test-fixture id="labelIsTrue">
+      <template>
+        <at-carbon-button label="true"></at-carbon-button>
+      </template>
+    </test-fixture>
+    <test-fixture id="labelIsFalse">
+      <template>
+        <at-carbon-button label="false"></at-carbon-button>
+      </template>
+    </test-fixture>
+    <test-fixture id="labelIs-42">
+      <template>
+        <at-carbon-button label="-42"></at-carbon-button>
+      </template>
+    </test-fixture>
+    <test-fixture id="labelIs0">
+      <template>
+        <at-carbon-button label="0"></at-carbon-button>
+      </template>
+    </test-fixture>
+    <test-fixture id="labelIs42">
+      <template>
+        <at-carbon-button label="42"></at-carbon-button>
+      </template>
+    </test-fixture>
+    <test-fixture id="labelIsEmpty">
+      <template>
+        <at-carbon-button label=""></at-carbon-button>
+      </template>
+    </test-fixture>
+    <test-fixture id="labelIsLorem_ipsum">
+      <template>
+        <at-carbon-button label="lorem ipsum"></at-carbon-button>
+      </template>
+    </test-fixture>
+    <test-fixture id="labelIs{}">
+      <template>
+        <at-carbon-button label="{}"></at-carbon-button>
+      </template>
+    </test-fixture>
+    <test-fixture id="labelIs[]">
+      <template>
+        <at-carbon-button label="[]"></at-carbon-button>
+      </template>
+    </test-fixture>
+    <test-fixture id="labelIsFunction">
+      <template>
+        <at-carbon-button label="function f() { return undefined; }"></at-carbon-button>
+      </template>
+    </test-fixture>
+
+    <!-- 
+      icon fixtures 
+    -->
+    <test-fixture id="iconIsUndefined">
+      <template>
+        <at-carbon-button icon="undefined"></at-carbon-button>
+      </template>
+    </test-fixture>
+    <test-fixture id="iconIsNull">
+      <template>
+        <at-carbon-button icon="null"></at-carbon-button>
+      </template>
+    </test-fixture>
+    <test-fixture id="iconIsTrue">
+      <template>
+        <at-carbon-button icon="true"></at-carbon-button>
+      </template>
+    </test-fixture>
+    <test-fixture id="iconIsFalse">
+      <template>
+        <at-carbon-button icon="false"></at-carbon-button>
+      </template>
+    </test-fixture>
+    <test-fixture id="iconIs-42">
+      <template>
+        <at-carbon-button icon="-42"></at-carbon-button>
+      </template>
+    </test-fixture>
+    <test-fixture id="iconIs0">
+      <template>
+        <at-carbon-button icon="0"></at-carbon-button>
+      </template>
+    </test-fixture>
+    <test-fixture id="iconIs42">
+      <template>
+        <at-carbon-button icon="42"></at-carbon-button>
+      </template>
+    </test-fixture>
+    <test-fixture id="iconIsEmpty">
+      <template>
+        <at-carbon-button icon=""></at-carbon-button>
+      </template>
+    </test-fixture>
+    <test-fixture id="iconIsLorem_ipsum">
+      <template>
+        <at-carbon-button icon="lorem ipsum"></at-carbon-button>
+      </template>
+    </test-fixture>
+    <test-fixture id="iconIs{}">
+      <template>
+        <at-carbon-button icon="{}"></at-carbon-button>
+      </template>
+    </test-fixture>
+    <test-fixture id="iconIs[]">
+      <template>
+        <at-carbon-button icon="[]"></at-carbon-button>
+      </template>
+    </test-fixture>
+    <test-fixture id="iconIsFunction">
+      <template>
+        <at-carbon-button icon="function f() { return undefined; }"></at-carbon-button>
+      </template>
+    </test-fixture>
+
+    <test-fixture id="propertyTests">
+      <template>
+        <at-carbon-button></at-carbon-button>
+      </template>
+    </test-fixture>
+    
+  <script>
+    suite('initial value tests', function() {
+      test('initial value', function() {
+        var elt = fixture('initial');
+
+        assert.equal(elt.raised, false);
+        assert.equal(elt.label, "");
+        assert.equal(elt.icon, "");
+      });
+    });
+
+    // 
+    // raised attribute tests
+    // 
+    suite("raised attribute tests", function() {
+      test('raised is undefined', function() {
+        var elt = fixture('raisedIsUndefined');
+
+        assert.equal(elt.raised, true);
+        assert.equal(elt.label, "");
+        assert.equal(elt.icon, "");
+      });
+
+      test('raised is null', function() {
+        var elt = fixture('raisedIsNull');
+
+        assert.equal(elt.raised, true);
+        assert.equal(elt.label, "");
+        assert.equal(elt.icon, "");
+      });
+
+      test('raised is true', function() {
+        var elt = fixture('raisedIsTrue');
+
+        assert.equal(elt.raised, true);
+        assert.equal(elt.label, "");
+        assert.equal(elt.icon, "");
+      });
+
+      test('raised is false', function() {
+        var elt = fixture('raisedIsFalse');
+
+        assert.equal(elt.raised, true);
+        assert.equal(elt.label, "");
+        assert.equal(elt.icon, "");
+      });
+
+      test('raised is -42', function() {
+        var elt = fixture('raisedIs-42');
+
+        assert.equal(elt.raised, true);
+        assert.equal(elt.label, "");
+        assert.equal(elt.icon, "");      });
+
+      test('raised is 0', function() {
+        var elt = fixture('raisedIs0');
+
+        assert.equal(elt.raised, true);
+        assert.equal(elt.label, "");
+        assert.equal(elt.icon, "");      });
+
+      test('raised is 42', function() {
+        var elt = fixture('raisedIs42');
+
+        assert.equal(elt.raised, true);
+        assert.equal(elt.label, "");
+        assert.equal(elt.icon, "");      });
+
+      test('raised is empty', function() {
+        var elt = fixture('raisedIsEmpty');
+
+        assert.equal(elt.raised, true);
+        assert.equal(elt.label, "");
+        assert.equal(elt.icon, "");      });
+
+      test('raised is lorem ipsum', function() {
+        var elt = fixture('raisedIsLorem_ipsum');
+
+        assert.equal(elt.raised, true);
+        assert.equal(elt.label, "");
+        assert.equal(elt.icon, "");      });
+
+      test('raised is {}', function() {
+        var elt = fixture('raisedIs{}');
+
+        assert.equal(elt.raised, true);
+        assert.equal(elt.label, "");
+        assert.equal(elt.icon, "");      });
+
+      test('raised is []', function() {
+        var elt = fixture('raisedIs[]');
+
+        assert.equal(elt.raised, true);
+        assert.equal(elt.label, "");
+        assert.equal(elt.icon, "");      });
+
+      test('raised is function', function() {
+        var elt = fixture('raisedIsFunction');
+
+        assert.equal(elt.raised, true);
+        assert.equal(elt.label, "");
+        assert.equal(elt.icon, "");      });
+    });
+
+    // 
+    // label attribute tests
+    // 
+    suite("label attribute tests", function() {
+      test('label is undefined', function() {
+        var elt = fixture('labelIsUndefined');
+
+        assert.equal(elt.label, "undefined");
+        assert.equal(elt.raised, false);
+        assert.equal(elt.icon, "");
+      });
+
+      test('label is null', function() {
+        var elt = fixture('labelIsNull');
+
+        assert.equal(elt.label, "null");
+        assert.equal(elt.raised, false);
+        assert.equal(elt.icon, "");
+      });
+
+      test('label is true', function() {
+        var elt = fixture('labelIsTrue');
+
+        assert.equal(elt.label, "true");
+        assert.equal(elt.raised, false);
+        assert.equal(elt.icon, "");
+      });
+
+      test('label is false', function() {
+        var elt = fixture('labelIsFalse');
+
+        assert.equal(elt.label, "false");
+        assert.equal(elt.raised, false);
+        assert.equal(elt.icon, "");
+      });
+
+      test('label is -42', function() {
+        var elt = fixture('labelIs-42');
+
+        assert.equal(elt.label, "-42");
+        assert.equal(elt.raised, false);
+        assert.equal(elt.icon, "");
+      });
+
+      test('label is 0', function() {
+        var elt = fixture('labelIs0');
+
+        assert.equal(elt.label, "0");
+        assert.equal(elt.raised, false);
+        assert.equal(elt.icon, "");
+      });
+
+      test('label is 42', function() {
+        var elt = fixture('labelIs42');
+
+        assert.equal(elt.label, "42");
+        assert.equal(elt.raised, false);
+        assert.equal(elt.icon, "");
+      });
+
+      test('label is empty', function() {
+        var elt = fixture('labelIsEmpty');
+
+        assert.equal(elt.label, "");
+        assert.equal(elt.raised, false);
+        assert.equal(elt.icon, "");
+      });
+
+      test('label is lorem ipsum', function() {
+        var elt = fixture('labelIsLorem_ipsum');
+
+        assert.equal(elt.label, "lorem ipsum");
+        assert.equal(elt.raised, false);
+        assert.equal(elt.icon, "");
+      });
+
+      test('label is {}', function() {
+        var elt = fixture('labelIs{}');
+
+        assert.equal(elt.label, "{}");
+        assert.equal(elt.raised, false);
+        assert.equal(elt.icon, "");
+      });
+
+      test('label is []', function() {
+        var elt = fixture('labelIs[]');
+
+        assert.equal(elt.label, "[]");
+        assert.equal(elt.raised, false);
+        assert.equal(elt.icon, "");
+      });
+
+      test('label is function', function() {
+        var elt = fixture('labelIsFunction');
+
+        assert.equal(elt.label, "function f() { return undefined; }");
+        assert.equal(elt.raised, false);
+        assert.equal(elt.icon, "");
+      });
+    });
+
+
+    // 
+    // icon attribute tests
+    // 
+    suite("icon attribute tests", function() {
+      test('icon is undefined', function() {
+        var elt = fixture('iconIsUndefined');
+
+        assert.equal(elt.icon, "undefined");
+        assert.equal(elt.raised, false);
+        assert.equal(elt.label, "");
+      });
+
+      test('icon is null', function() {
+        var elt = fixture('iconIsNull');
+
+        assert.equal(elt.icon, "null");
+        assert.equal(elt.raised, false);
+        assert.equal(elt.label, "");
+      });
+
+      test('icon is true', function() {
+        var elt = fixture('iconIsTrue');
+
+        assert.equal(elt.icon, "true");
+        assert.equal(elt.raised, false);
+        assert.equal(elt.label, "");
+      });
+
+      test('icon is false', function() {
+        var elt = fixture('iconIsFalse');
+
+        assert.equal(elt.icon, "false");
+        assert.equal(elt.raised, false);
+        assert.equal(elt.label, "");
+      });
+
+      test('icon is -42', function() {
+        var elt = fixture('iconIs-42');
+
+        assert.equal(elt.icon, "-42");
+        assert.equal(elt.raised, false);
+        assert.equal(elt.label, "");
+      });
+
+      test('icon is 0', function() {
+        var elt = fixture('iconIs0');
+
+        assert.equal(elt.icon, "0");
+        assert.equal(elt.raised, false);
+        assert.equal(elt.label, "");
+      });
+
+      test('icon is 42', function() {
+        var elt = fixture('iconIs42');
+
+        assert.equal(elt.icon, "42");
+        assert.equal(elt.raised, false);
+        assert.equal(elt.label, "");
+      });
+
+      test('icon is empty', function() {
+        var elt = fixture('iconIsEmpty');
+
+        assert.equal(elt.icon, '');
+        assert.equal(elt.raised, false);
+        assert.equal(elt.label, "");
+      });
+
+      test('icon is lorem ipsum', function() {
+        var elt = fixture('iconIsLorem_ipsum');
+
+        assert.equal(elt.icon, "lorem ipsum");
+        assert.equal(elt.raised, false);
+        assert.equal(elt.label, "");
+      });
+
+      test('icon is {}', function() {
+        var elt = fixture('iconIs{}');
+
+        assert.equal(elt.icon, "{}");
+        assert.equal(elt.raised, false);
+        assert.equal(elt.label, "");
+      });
+
+      test('icon is []', function() {
+        var elt = fixture('iconIs[]');
+
+        assert.equal(elt.icon, "[]");
+        assert.equal(elt.raised, false);
+        assert.equal(elt.label, "");
+      });
+
+      test('icon is function', function() {
+        var elt = fixture('iconIsFunction');
+
+        assert.equal(elt.icon, "function f() { return undefined; }");
+        assert.equal(elt.raised, false);
+        assert.equal(elt.label, "");
+      });
+    });
+
+    suite("tests where properties are set as in code", function() { 
+
+      test('invalid raised values', function() {
+        var elt = fixture('propertyTests');
+
+        var actValues = [ 
+          "undefined", "null", "true", "false", "-42", "0", "42", "", "lorem ipsum", "{}", "[]", "function f() { return undefined; }", 
+          undefined, null, true, false, -42, 0, 42, {}, []
+          ];
+
+        var expValues = [ 
+          "undefined", "null", "true", "false", "-42", "0", "42", "", "lorem ipsum", "{}", "[]", "function f() { return undefined; }",
+          undefined, null, true, false, -42, 0, 42, {}, []
+         ];
+
+        for (var i=0; i < actValues.length; i++) { 
+          var actValue = actValues[i];
+          var expValue = expValues[i];
+
+          elt.raised = actValue;
+          assert.deepEqual(elt.raised, expValue);
+          assert.deepEqual(elt.label, "");
+          assert.deepEqual(elt.icon, "");
+        }
+      });
+
+      test('invalid label values', function() {
+        var elt = fixture('propertyTests');
+
+        var actValues = [ 
+          "undefined", "null", "true", "false", "-42", "0", "42", "", "lorem ipsum", "{}", "[]", "function f() { return undefined; }", 
+          undefined, null, true, false, -42, 0, 42, {}, []
+          ];
+
+        var expValues = [ 
+          "undefined", "null", "true", "false", "-42", "0", "42", "", "lorem ipsum", "{}", "[]", "function f() { return undefined; }",
+          undefined, null, true, false, -42, 0, 42, {}, []
+         ];
+
+        for (var i=0; i < actValues.length; i++) { 
+          var actValue = actValues[i];
+          var expValue = expValues[i];
+
+          elt.label = actValue;
+          assert.deepEqual(elt.raised, false);
+          assert.deepEqual(elt.label, expValue);
+          assert.deepEqual(elt.icon, "");
+        }
+      });
+
+      test('invalid icon values', function() {
+        var elt = fixture('propertyTests');
+
+        var actValues = [ 
+          "undefined", "null", "true", "false", "-42", "0", "42", "", "lorem ipsum", "{}", "[]", "function f() { return undefined; }", 
+          undefined, null, true, false, -42, 0, 42, {}, []
+          ];
+
+        var expValues = [ 
+          "undefined", "null", "true", "false", "-42", "0", "42", "", "lorem ipsum", "{}", "[]", "function f() { return undefined; }",
+          undefined, null, true, false, -42, 0, 42, {}, []
+         ];
+
+        for (var i=0; i < actValues.length; i++) { 
+          var actValue = actValues[i];
+          var expValue = expValues[i];
+
+          elt.icon = actValue;
+          assert.deepEqual(elt.raised, false);
+          assert.deepEqual(elt.label, "");
+          assert.deepEqual(elt.icon, expValue);
+        }
+      });
+
+    });
+  </script>
+  </body>
+</html>

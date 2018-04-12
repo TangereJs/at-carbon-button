@@ -251,7 +251,7 @@ Custom property | Description | Default
         
         if (!this._isString(newValue) || !newValue.length) {
           // unwrap button from at-link
-          if (linkElt.is && linkElt.is === "at-link") {
+          if (linkElt && linkElt.is && linkElt.is === "at-link") {
             var linkEltParentNode = Polymer.dom(linkElt).parentNode;
             Polymer.dom(linkElt).removeChild(this);
             Polymer.dom(linkEltParentNode).replaceChild(this, linkElt);

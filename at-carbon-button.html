@@ -105,18 +105,18 @@ Custom property | Description | Default
         z-index: 0;
         padding: 0.7em 0.57em;
 
-        @apply(--paper-font-common-base);
-        @apply(--at-carbon-button);
+        @apply --paper-font-common-base;
+        @apply --at-carbon-button;
       }
 
        :host([raised].keyboard-focus) {
         font-weight: bold;
-        @apply(--at-carbon-button-raised-keyboard-focus);
+        @apply --at-carbon-button-raised-keyboard-focus;
       }
 
        :host(:not([raised]).keyboard-focus) {
         font-weight: bold;
-        @apply(--at-carbon-button-flat-keyboard-focus);
+        @apply --at-carbon-button-flat-keyboard-focus;
       }
 
        :host([disabled]) {
@@ -125,7 +125,7 @@ Custom property | Description | Default
         cursor: auto;
         pointer-events: none;
 
-        @apply(--at-carbon-button-disabled);
+        @apply --at-carbon-button-disabled;
       }
 
       paper-ripple {
@@ -133,7 +133,7 @@ Custom property | Description | Default
       }
 
       .horizontal-layout {
-        @apply(--layout-horizontal);
+        @apply --layout-horizontal;
       }
 
       .button-icon {
@@ -142,10 +142,10 @@ Custom property | Description | Default
       }
 
       .button-label {
-        @apply(--layout-flex);
-        @apply(--layout-self-center);
-        @apply(--paper-font-body1);
-        @apply(--at-form-label-font);
+        @apply --layout-flex;
+        @apply --layout-self-center;
+        @apply --paper-font-body1;
+        @apply --at-form-label-font;
         vertical-align: middle;
         white-space: nowrap;
         line-height: 24px;

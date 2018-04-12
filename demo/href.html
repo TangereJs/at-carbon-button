@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>at-carbon-button href demo</title>
+
+  <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+  <link rel="import" href="../../at-core-style-classes/at-core-style-classes.html" />
+  <link rel="import" href="../at-carbon-button.html">
+
+  <style is="custom-style">
+    .row {
+      @apply --layout-horizontal;
+      margin-top: 32px;
+
+      padding: 8px;
+
+      border-width: 1px;
+      border-style: solid;
+      border-color: var(--paper-purple-100, black);
+    }
+  </style>
+</head>
+
+<body>
+  <h4>These buttons have href set</h4>
+  <div class="row">
+    <at-carbon-button raised icon="now:wrench" href="http://localhost:2014"></at-carbon-button>
+    <at-carbon-button raised label="Lorem ipsum" href="http://localhost:2014"></at-carbon-button>
+    <at-carbon-button raised icon="now:wrench" href="http://localhost:2014" label="Lorem ipsum"></at-carbon-button>
+  </div>
+
+  <script>
+    document.addEventListener('WebComponentsReady', function() {
+
+    });
+  </script>
+</body>
+
+</html>

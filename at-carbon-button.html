@@ -88,7 +88,7 @@ Custom property | Description | Default
   <template strip-whitespace>
     <style include="at-core-style-classes"></style>
     <style include="paper-material">
-       :host {
+      :host {
         display: inline-block;
         position: relative;
         box-sizing: border-box;
@@ -96,7 +96,7 @@ Custom property | Description | Default
         margin: 0 0.29em;
         background: transparent;
         text-align: center;
-        font: inherit;       
+        font: inherit;
         outline-width: 0;
         border-radius: 3px;
         -moz-user-select: none;
@@ -111,17 +111,17 @@ Custom property | Description | Default
         color: var(--at-action-color);
       }
 
-       :host([raised].keyboard-focus) {
+      :host([raised].keyboard-focus) {
         font-weight: bold;
         @apply --at-carbon-button-raised-keyboard-focus;
       }
 
-       :host(:not([raised]).keyboard-focus) {
+      :host(:not([raised]).keyboard-focus) {
         font-weight: bold;
         @apply --at-carbon-button-flat-keyboard-focus;
       }
 
-       :host([disabled]) {
+      :host([disabled]) {
         background: #eaeaea;
         color: #a8a8a8;
         cursor: auto;
@@ -182,7 +182,6 @@ Custom property | Description | Default
         background-color: var(--at-grey);
         color: var(--at-background-text-color);
       }
-
     </style>
 
     <template is="dom-if" if="[[_showInnerHtml(icon, label)]]">
@@ -334,7 +333,7 @@ Custom property | Description | Default
 
       _hrefChanged: function(newValue, oldValue) {
         var linkElt = Polymer.dom(this).parentNode;
-        
+
         if (!this._isString(newValue) || !newValue.length) {
           // unwrap button from at-link
           if (linkElt && linkElt.is && linkElt.is === "at-link") {
@@ -342,14 +341,14 @@ Custom property | Description | Default
             Polymer.dom(linkElt).removeChild(this);
             Polymer.dom(linkEltParentNode).replaceChild(this, linkElt);
           }
-        
+
         } else {
           // wrap carbon-button into at-link
           linkElt = this.create('at-link');
           var thisParentNode = Polymer.dom(this).parentNode;
           Polymer.dom(thisParentNode).replaceChild(linkElt, this);
           Polymer.dom(linkElt).appendChild(this);
-          
+
           Polymer.dom(linkElt).setAttribute('href', this.href);
         }
       },

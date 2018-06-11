@@ -258,6 +258,7 @@ Custom property | Description | Default
           type: String,
           value: "text",
           xtype: 'enum',
+          observer: '_buttonTypeChanged',
           required: true,
           xvaluelist: [
             { title: "Text", value: "text" },
@@ -269,6 +270,7 @@ Custom property | Description | Default
           type: String,
           value: "primary",
           xtype: 'enum',
+          observer: '_buttonColorChanged',
           required: true,
           xvaluelist: [
             { title: "Primary", value: "primary" },
@@ -290,19 +292,37 @@ Custom property | Description | Default
         }
       },
 
-      observers: [
-        '_updateColor(buttonType, buttonColor)'
-      ],
 
-      _updateColor: function(buttonType, buttonColor) {
-        this.classList.remove(buttonColor);
-        var bgButtonColor = 'background-'+buttonColor;
-        this.classList.remove(bgButtonColor);
-        
-        if (buttonType == 'text') {
-          this.classList.add(buttonColor);
-        
-        } else if (buttonType == 'contained') {
+      _buttonTypeChanged: function(newValue, oldValue) {
+        if (!this.buttonColor) return;
+
+        var bgButtonColor = 'background-' + this.buttonColor;
+
+        if (newValue == 'text') {
+          this.classList.remove(bgButtonColor);
+          this.classList.add(this.buttonColor);
+
+        } else if (newValue == 'contained') {
+          this.classList.remove(this.buttonColor);
+          this.classList.add(bgButtonColor);
+        }
+      },
+
+      _buttonColorChanged: function(newValue, oldValue) {
+        if (!this.buttonType) return;
+        var oldBgButtonColor = 'background-' + oldValue;
+        var bgButtonColor = 'background-' + newValue;
+
+        if (this.buttonType == 'text') {
+          if (oldValue !== undefined) {
+            this.classList.remove(oldValue);
+          }
+          this.classList.add(newValue);
+
+        } else if (this.buttonType == 'contained') {
+          if (oldValue !== undefined) {
+            this.classList.remove(oldBgButtonColor);
+          }
           this.classList.add(bgButtonColor);
         }
       },

@@ -14,6 +14,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../paper-material/paper-material.html">
 <link rel="import" href="../at-carbon-icon/at-carbon-icon.html" />
 <link rel="import" href="../at-link/at-link.html">
+<link rel="import" href="../at-core-style-classes/at-core-style-classes.html">
 
 <!--
 Material design: [Buttons](https://www.google.com/design/spec/components/buttons.html)
@@ -85,6 +86,7 @@ Custom property | Description | Default
 
 <dom-module id="at-carbon-button">
   <template strip-whitespace>
+    <style include="at-core-style-classes"></style>
     <style include="paper-material">
        :host {
         display: inline-block;
@@ -128,14 +130,6 @@ Custom property | Description | Default
         @apply --at-carbon-button-disabled;
       }
 
-      paper-ripple {
-        color: var(--at-carbon-button-ink-color);
-      }
-
-      .horizontal-layout {
-        @apply --layout-horizontal;
-      }
-
       .button-icon {
         display: block;
         left: 0;
@@ -152,6 +146,43 @@ Custom property | Description | Default
       .button-label.with-icon {
         margin-left: 8px;
       }
+
+      :host(.primary) {
+        color: var(--at-blue);
+      }
+
+      :host(.confirm) {
+        color: var(--at-green);
+      }
+
+      :host(.decline) {
+        color: var(--at-red);
+      }
+
+      :host(.cancel) {
+        color: var(--at-grey);
+      }
+
+      :host(.background-primary) {
+        background-color: var(--at-blue);
+        color: var(--at-background-text-color);
+      }
+
+      :host(.background-confirm) {
+        background-color: var(--at-green);
+        color: var(--at-background-text-color);
+      }
+
+      :host(.background-decline) {
+        background-color: var(--at-red);
+        color: var(--at-background-text-color);
+      }
+
+      :host(.background-cancel) {
+        background-color: var(--at-grey);
+        color: var(--at-background-text-color);
+      }
+
     </style>
 
     <template is="dom-if" if="[[_showInnerHtml(icon, label)]]">
@@ -160,7 +191,7 @@ Custom property | Description | Default
       </div>
     </template>
     <template is="dom-if" if="[[_showIconAndLabel(icon, label)]]">
-      <div class="horizontal-layout">
+      <div class="layout-horizontal">
         <at-carbon-icon class="button-icon" hidden$="[[!icon]]" icon="[[icon]]"></at-carbon-icon>
         <span class$="[[_computeClassList(icon)]]" hidden$="[[!label]]">[[label]]</span>
       </div>
@@ -212,10 +243,68 @@ Custom property | Description | Default
           value: ""
         },
 
+        /**
+         * button href
+         * @property href
+         * @type String
+         * @default ""
+         */
         href: {
           type: String,
           value: "",
           observer: "_hrefChanged"
+        },
+
+        buttonType: {
+          type: String,
+          value: "text",
+          xtype: 'enum',
+          required: true,
+          xvaluelist: [
+            { title: "Text", value: "text" },
+            { title: "Contained", value: "contained" }
+          ]
+        },
+
+        buttonColor: {
+          type: String,
+          value: "primary",
+          xtype: 'enum',
+          required: true,
+          xvaluelist: [
+            { title: "Primary", value: "primary" },
+            { title: "Confirm", value: "confirm" },
+            { title: "Decline", value: "decline" },
+            { title: "Cancel", value: "cancel" },
+            { title: "Blue", value: "blue" },
+            { title: "Green", value: "green" },
+            { title: "Orange", value: "orange" },
+            { title: "Pink", value: "pink" },
+            { title: "Purple", value: "purple" },
+            { title: "Red", value: "red" },
+            { title: "Teal", value: "teal" },
+            { title: "Yellow", value: "yellow" },
+            { title: "Grey", value: "grey" },
+            { title: "Black", value: "black" },
+            { title: "White", value: "white" }
+          ]
+        }
+      },
+
+      observers: [
+        '_updateColor(buttonType, buttonColor)'
+      ],
+
+      _updateColor: function(buttonType, buttonColor) {
+        this.classList.remove(buttonColor);
+        var bgButtonColor = 'background-'+buttonColor;
+        this.classList.remove(bgButtonColor);
+        
+        if (buttonType == 'text') {
+          this.classList.add(buttonColor);
+        
+        } else if (buttonType == 'contained') {
+          this.classList.add(bgButtonColor);
         }
       },
 

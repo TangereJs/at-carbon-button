@@ -291,7 +291,13 @@ Custom property | Description | Default
           ]
         }
       },
-
+      
+      // empty setters are there to prevent unnecessary log output when any of the readonly properties are set
+      set pressed(value) { },
+      set pointerDown(value) { },
+      set receivedFocusFromKeyboard(value) { },
+      set focused(value) { },
+      set elevation(value) { },
 
       _buttonTypeChanged: function(newValue, oldValue) {
         if (!this.buttonColor) return;

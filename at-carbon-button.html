@@ -306,7 +306,7 @@ Custom property | Description | Default
       },
 
       observers: [
-        '_disabledChanged(disabled, buttonType, buttonColor)'
+        '_updateDisabledState(disabled, buttonType, buttonColor)'
       ],
       
       // empty setters are there to prevent unnecessary log output when any of the readonly properties are set
@@ -316,7 +316,7 @@ Custom property | Description | Default
       set focused(value) { },
       set elevation(value) { },
 
-      _disabledChanged: function(disabled, buttonType, buttonColor) {
+      _updateDisabledState: function(disabled, buttonType, buttonColor) {
         var colorClass = buttonType == "text" ? buttonColor : 'background-'+buttonColor;
         
         if (!disabled) {

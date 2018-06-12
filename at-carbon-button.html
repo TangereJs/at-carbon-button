@@ -122,12 +122,20 @@ Custom property | Description | Default
       }
 
       :host([disabled]) {
-        background: #eaeaea;
-        color: #a8a8a8;
         cursor: auto;
         pointer-events: none;
 
         @apply --at-carbon-button-disabled;
+      }
+
+      :host(.disabled-text) {
+        background: transparent;
+        color: var(--at-light-grey);
+      }
+
+      :host(.disabled-contained) {
+        background-color: var(--at-light-grey);
+        color: var(--at-grey);
       }
 
       .button-icon {
@@ -208,6 +216,12 @@ Custom property | Description | Default
       ],
 
       properties: {
+        disabled: {
+          type: Boolean,
+          value: false,
+          reflectToAttribute: true
+        },
+
         /**
          * If true, the button should be styled with a shadow.
          */
@@ -291,6 +305,10 @@ Custom property | Description | Default
           ]
         }
       },
+
+      observers: [
+        '_disabledChanged(disabled, buttonType, buttonColor)'
+      ],
       
       // empty setters are there to prevent unnecessary log output when any of the readonly properties are set
       set pressed(value) { },
@@ -298,6 +316,21 @@ Custom property | Description | Default
       set receivedFocusFromKeyboard(value) { },
       set focused(value) { },
       set elevation(value) { },
+
+      _disabledChanged: function(disabled, buttonType, buttonColor) {
+        var colorClass = buttonType == "text" ? buttonColor : 'background-'+buttonColor;
+        
+        if (!disabled) {
+          this.classList.add(colorClass);
+          this.classList.remove('disabled-text');
+          this.classList.remove('disabeld-contained');
+        
+        } else {
+          this.classList.remove(colorClass);
+          var className = 'disabled-'+buttonType;
+          this.classList.add(className);
+        }
+      },
 
       _buttonTypeChanged: function(newValue, oldValue) {
         if (!this.buttonColor) return;

@@ -194,6 +194,7 @@ Custom property | Description | Default
     <template is="dom-if" if="[[_showInnerHtml(icon, label)]]">
       <div class="button-label">
         <content></content>
+        <slot></slot>
       </div>
     </template>
     <template is="dom-if" if="[[_showIconAndLabel(icon, label)]]">

@@ -203,7 +203,6 @@ Custom property | Description | Default
       </div>
     </template>
   </template>
-
   <script>
     Polymer({
       is: 'at-carbon-button',
@@ -308,7 +307,7 @@ Custom property | Description | Default
       observers: [
         '_updateDisabledState(disabled, buttonType, buttonColor)'
       ],
-      
+
       // empty setters are there to prevent unnecessary log output when any of the readonly properties are set
       set pressed(value) { },
       set pointerDown(value) { },
@@ -317,16 +316,16 @@ Custom property | Description | Default
       set elevation(value) { },
 
       _updateDisabledState: function(disabled, buttonType, buttonColor) {
-        var colorClass = buttonType == "text" ? buttonColor : 'background-'+buttonColor;
-        
+        var colorClass = buttonType == "text" ? buttonColor : 'background-' + buttonColor;
+
         if (!disabled) {
           this.classList.add(colorClass);
           this.classList.remove('disabled-text');
           this.classList.remove('disabeld-contained');
-        
+
         } else {
           this.classList.remove(colorClass);
-          var className = 'disabled-'+buttonType;
+          var className = 'disabled-' + buttonType;
           this.classList.add(className);
         }
       },

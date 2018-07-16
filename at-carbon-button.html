@@ -191,17 +191,36 @@ Custom property | Description | Default
       }
     </style>
 
-    <template is="dom-if" if="[[_showInnerHtml(icon, label)]]">
-      <div class="button-label">
-        <content></content>
-        <slot></slot>
-      </div>
+    <template is="dom-if" if="[[_isHrefEmpty(href)]]">
+      <template is="dom-if" if="[[_showInnerHtml(icon, label)]]">
+        <div class="button-label">
+          <content></content>
+          <slot></slot>
+        </div>
+      </template>
+      <template is="dom-if" if="[[_showIconAndLabel(icon, label)]]">
+        <div class="layout-horizontal">
+          <at-carbon-icon class="button-icon" hidden$="[[!icon]]" icon="[[icon]]"></at-carbon-icon>
+          <span class$="[[_computeClassList(icon)]]" hidden$="[[!label]]">[[label]]</span>
+        </div>
+      </template>  
     </template>
-    <template is="dom-if" if="[[_showIconAndLabel(icon, label)]]">
-      <div class="layout-horizontal">
-        <at-carbon-icon class="button-icon" hidden$="[[!icon]]" icon="[[icon]]"></at-carbon-icon>
-        <span class$="[[_computeClassList(icon)]]" hidden$="[[!label]]">[[label]]</span>
-      </div>
+
+    <template is="dom-if" if="[[!_isHrefEmpty(href)]]">
+      <at-link href="[[href]]">
+        <template is="dom-if" if="[[_showInnerHtml(icon, label)]]">
+          <div class="button-label">
+            <content></content>
+            <slot></slot>
+          </div>
+        </template>
+        <template is="dom-if" if="[[_showIconAndLabel(icon, label)]]">
+          <div class="layout-horizontal">
+            <at-carbon-icon class="button-icon" hidden$="[[!icon]]" icon="[[icon]]"></at-carbon-icon>
+            <span class$="[[_computeClassList(icon)]]" hidden$="[[!label]]">[[label]]</span>
+          </div>
+        </template>
+      </at-link>
     </template>
   </template>
   <script>
@@ -263,8 +282,7 @@ Custom property | Description | Default
          */
         href: {
           type: String,
-          value: "",
-          observer: "_hrefChanged"
+          value: ""
         },
 
         buttonType: {
@@ -389,28 +407,13 @@ Custom property | Description | Default
         return list.join(" ");
       },
 
-      _hrefChanged: function(newValue, oldValue) {
-        var linkElt = Polymer.dom(this).parentNode;
-
-        if (!this._isString(newValue) || !newValue.length) {
-          // unwrap button from at-link
-          if (linkElt && linkElt.is && linkElt.is === "at-link") {
-            var linkEltParentNode = Polymer.dom(linkElt).parentNode;
-            Polymer.dom(linkElt).removeChild(this);
-            Polymer.dom(linkEltParentNode).replaceChild(this, linkElt);
-          }
-
-        } else {
-          // wrap carbon-button into at-link
-          linkElt = this.create('at-link');
-          var thisParentNode = Polymer.dom(this).parentNode;
-          Polymer.dom(thisParentNode).replaceChild(linkElt, this);
-          Polymer.dom(linkElt).appendChild(this);
-
-          Polymer.dom(linkElt).setAttribute('href', this.href);
-        }
+      _isHrefEmpty: function(href) {
+        if (!this._isString(href)) return true;
+        if (href.length == 0) return true;
+        
+        return false;
       },
-
+      
       _isString: function(obj) { return Object.prototype.toString.call(obj) === "[object String]"; }
 
       /**

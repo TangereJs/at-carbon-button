@@ -150,6 +150,15 @@ Custom property | Description | Default
         white-space: nowrap;
       }
 
+      .link-button-label {
+        @apply --paper-font-common-base;
+        @apply --paper-font-button;
+        text-decoration: none;
+        vertical-align: middle;
+        white-space: nowrap;
+        color: var(--at-background-text-color);
+      }
+
       .button-label.with-icon {
         margin-left: 8px;
       }
@@ -207,7 +216,7 @@ Custom property | Description | Default
     </template>
 
     <template is="dom-if" if="[[!_isHrefEmpty(href)]]">
-      <at-link href="[[href]]">
+      <at-link href="[[href]]" class="link-button-label">
         <template is="dom-if" if="[[_showInnerHtml(icon, label)]]">
           <div class="button-label">
             <content></content>

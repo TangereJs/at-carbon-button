@@ -130,11 +130,13 @@ Custom property | Description | Default
       :host(.disabled-text) {
         background: transparent;
         color: var(--at-light-grey);
+        --primary-text-color: var(--at-light-grey);
       }
 
       :host(.disabled-contained) {
         background-color: var(--at-light-grey);
         color: var(--at-grey);
+        --primary-text-color: var(--at-grey);
       }
 
       .button-icon {
@@ -148,6 +150,15 @@ Custom property | Description | Default
         @apply --paper-font-button;
         vertical-align: middle;
         white-space: nowrap;
+      }
+
+      .link-button-label {
+        @apply --paper-font-common-base;
+        @apply --paper-font-button;
+        text-decoration: none;
+        vertical-align: middle;
+        white-space: nowrap;
+        color: inherit;
       }
 
       .button-label.with-icon {
@@ -346,7 +357,7 @@ Custom property | Description | Default
     </template>
 
     <template is="dom-if" if="[[!_isHrefEmpty(href)]]">
-      <at-link href="[[href]]">
+      <at-link href="[[href]]" class="link-button-label" disabled$="[[disabled]]">
         <template is="dom-if" if="[[_showInnerHtml(icon, label)]]">
           <div class="button-label">
             <content></content>

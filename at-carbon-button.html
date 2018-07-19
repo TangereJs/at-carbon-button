@@ -150,53 +150,183 @@ Custom property | Description | Default
         white-space: nowrap;
       }
 
-      .link-button-label {
-        @apply --paper-font-common-base;
-        @apply --paper-font-button;
-        text-decoration: none;
-        vertical-align: middle;
-        white-space: nowrap;
-        color: inherit;
-      }
-
       .button-label.with-icon {
         margin-left: 8px;
       }
 
       :host(.primary) {
         color: var(--at-blue);
+        --primary-text-color: var(--at-blue);
       }
 
       :host(.confirm) {
         color: var(--at-green);
+        --primary-text-color: var(--at-green);
       }
 
       :host(.decline) {
         color: var(--at-red);
+        --primary-text-color: var(--at-red);
       }
 
       :host(.cancel) {
         color: var(--at-grey);
+        --primary-text-color: var(--at-cancel);
       }
 
+      /*
+        THIS SHOULD BE TEMPORARY SOLUTION; A BETTER ONE SHOULD BE PROVIDED
+        css rules from at-core-style-classes are copy/pasted here as a workaround for #link rule in at-link which fixes the text color to --primary-text-color and the fact that at-core-style-classes also set color
+        for the buttonType/buttonColor and href/at-link use case we really need to modify the value for --primary-text-color
+      */
+      :host(.blue) {
+        color: var(--at-blue) !important;
+        --primary-text-color: var(--at-blue);
+      }
+
+      :host(.green) {
+        color: var(--at-green) !important;
+        --primary-text-color: var(--at-green);
+      }
+
+      :host(.orange) {
+        color: var(--at-orange) !important;
+        --primary-text-color: var(--at-orange);
+      }
+
+      :host(.pink) {
+        color: var(--at-pink) !important;
+        --primary-text-color: var(--at-pink);
+      }
+
+      :host(.purple) {
+        color: var(--at-purple) !important;
+        --primary-text-color: var(--at-purple);
+      }
+
+      :host(.red) {
+        color: var(--at-red) !important;
+        --primary-text-color: var(--at-red);
+      }
+
+      :host(.teal) {
+        color: var(--at-teal) !important;
+        --primary-text-color: var(--at-teal);
+      }
+
+      :host(.yellow) {
+        color: var(--at-yellow) !important;
+        --primary-text-color: var(--at-yellow);
+      }
+
+      :host(.grey) {
+        color: var(--at-grey) !important;
+        --primary-text-color: var(--at-grey);
+      }
+
+      :host(.black) {
+        color: var(--at-black) !important;
+        --primary-text-color: var(--at-black);
+      }
+
+      :host(.white) {
+        color: var(--at-white) !important;
+        --primary-text-color: var(--at-white);
+      }
+
+      /*
+        THIS SHOULD BE TEMPORARY SOLUTION; A BETTER ONE SHOULD BE PROVIDED
+        css rules from at-core-style-classes are copy/pasted here as a workaround for #link rule in at-link which fixes the text color to --primary-text-color and the fact that at-core-style-classes also set color
+        for the buttonType/buttonColor and href/at-link use case we really need to modify the value for --primary-text-color
+      */
       :host(.background-primary) {
         background-color: var(--at-blue);
         color: var(--at-background-text-color);
+        --primary-text-color: var(--at-background-text-color);
       }
 
       :host(.background-confirm) {
         background-color: var(--at-green);
         color: var(--at-background-text-color);
+        --primary-text-color: var(--at-background-text-color);
       }
 
       :host(.background-decline) {
         background-color: var(--at-red);
         color: var(--at-background-text-color);
+        --primary-text-color: var(--at-background-text-color);
       }
 
       :host(.background-cancel) {
         background-color: var(--at-grey);
         color: var(--at-background-text-color);
+        --primary-text-color: var(--at-background-text-color);
+      }
+
+      :host(.background-blue) {
+        background-color: var(--at-blue);
+        color: var(--at-background-text-color);
+        --primary-text-color: var(--at-background-text-color);
+      }
+
+      :host(.background-black) {
+        background-color: var(--at-black);
+        color: var(--at-background-text-color);
+        --primary-text-color: var(--at-background-text-color);
+      }
+
+      :host(.background-green) {
+        background-color: var(--at-green);
+        color: var(--at-background-text-color);
+        --primary-text-color: var(--at-background-text-color);
+      }
+
+      :host(.background-orange) {
+        background-color: var(--at-orange);
+        color: var(--at-background-text-color);
+        --primary-text-color: var(--at-background-text-color);
+      }
+
+      :host(.background-pink) {
+        background-color: var(--at-pink);
+        color: var(--at-background-text-color);
+        --primary-text-color: var(--at-background-text-color);
+      }
+
+      :host(.background-purple) {
+        background-color: var(--at-purple);
+        color: var(--at-background-text-color);
+        --primary-text-color: var(--at-background-text-color);
+      }
+
+      :host(.background-red) {
+        background-color: var(--at-red);
+        color: var(--at-background-text-color);
+        --primary-text-color: var(--at-background-text-color);
+      }
+
+      :host(.background-teal) {
+        background-color: var(--at-teal);
+        color: var(--at-background-text-color);
+        --primary-text-color: var(--at-background-text-color);
+      }
+
+      :host(.background-yellow) {
+        background-color: var(--at-yellow);
+        color: var(--at-background-text-color);
+        --primary-text-color: var(--at-background-text-color);
+      }
+
+      :host(.background-grey) {
+        background-color: var(--at-grey);
+        color: var(--at-background-text-color);
+        --primary-text-color: var(--at-background-text-color);
+      }
+
+      :host(.background-white) {
+        background-color: var(--at-white);
+        color: var(--at-background-text-color);
+        --primary-text-color: var(--at-background-text-color);
       }
     </style>
 
@@ -212,11 +342,11 @@ Custom property | Description | Default
           <at-carbon-icon class="button-icon" hidden$="[[!icon]]" icon="[[icon]]"></at-carbon-icon>
           <span class$="[[_computeClassList(icon)]]" hidden$="[[!label]]">[[label]]</span>
         </div>
-      </template>  
+      </template>
     </template>
 
     <template is="dom-if" if="[[!_isHrefEmpty(href)]]">
-      <at-link href="[[href]]" class="link-button-label">
+      <at-link href="[[href]]">
         <template is="dom-if" if="[[_showInnerHtml(icon, label)]]">
           <div class="button-label">
             <content></content>
@@ -419,10 +549,10 @@ Custom property | Description | Default
       _isHrefEmpty: function(href) {
         if (!this._isString(href)) return true;
         if (href.length == 0) return true;
-        
+
         return false;
       },
-      
+
       _isString: function(obj) { return Object.prototype.toString.call(obj) === "[object String]"; }
 
       /**

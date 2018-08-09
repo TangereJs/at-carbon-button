@@ -140,14 +140,13 @@ Custom property | Description | Default
       }
 
       .button-icon {
-        display: block;
+        display: inline-block;
         left: 0;
       }
 
       .button-label {
-        @apply --layout-flex;
-        @apply --layout-self-center;
         @apply --paper-font-button;
+        display: inline-block;
         vertical-align: middle;
         white-space: nowrap;
       }
@@ -349,9 +348,9 @@ Custom property | Description | Default
         </div>
       </template>
       <template is="dom-if" if="[[_showIconAndLabel(icon, label)]]">
-        <div class="layout-horizontal">
+        <div>
           <at-carbon-icon class="button-icon" hidden$="[[!icon]]" icon="[[icon]]"></at-carbon-icon>
-          <span class$="[[_computeClassList(icon)]]" hidden$="[[!label]]">[[label]]</span>
+          <span class$="button-label [[_computeClassList(icon)]]" hidden$="[[!label]]">[[label]]</span>
         </div>
       </template>
     </template>
@@ -365,9 +364,9 @@ Custom property | Description | Default
           </div>
         </template>
         <template is="dom-if" if="[[_showIconAndLabel(icon, label)]]">
-          <div class="layout-horizontal">
+          <div>
             <at-carbon-icon class="button-icon" hidden$="[[!icon]]" icon="[[icon]]"></at-carbon-icon>
-            <span class$="[[_computeClassList(icon)]]" hidden$="[[!label]]">[[label]]</span>
+            <span class$="button-label [[_computeClassList(icon)]]" hidden$="[[!label]]">[[label]]</span>
           </div>
         </template>
       </at-link>

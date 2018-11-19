@@ -235,6 +235,7 @@ Custom property | Description | Default
       }
 
       :host(.black) {
+        --at-background-text-color: var(--at-black, #000000);
         color: var(--at-black) !important;
         --primary-text-color: var(--at-black);
       }
@@ -343,7 +344,6 @@ Custom property | Description | Default
     <template is="dom-if" if="[[_isHrefEmpty(href)]]">
       <template is="dom-if" if="[[_showInnerHtml(icon, label)]]">
         <div class="button-label">
-          <content></content>
           <slot></slot>
         </div>
       </template>
@@ -359,7 +359,6 @@ Custom property | Description | Default
       <at-link href="[[href]]" class="link-button-label" disabled$="[[disabled]]">
         <template is="dom-if" if="[[_showInnerHtml(icon, label)]]">
           <div class="button-label">
-            <content></content>
             <slot></slot>
           </div>
         </template>

@@ -235,7 +235,6 @@ Custom property | Description | Default
       }
 
       :host(.black) {
-        --at-background-text-color: var(--at-black, #000000);
         color: var(--at-black) !important;
         --primary-text-color: var(--at-black);
       }
@@ -336,8 +335,8 @@ Custom property | Description | Default
 
       :host(.background-white) {
         background-color: var(--at-white);
-        color: var(--at-background-text-color);
-        --primary-text-color: var(--at-background-text-color);
+        color: var(--at-black, #000000);
+        --primary-text-color: var(--at-black, #000000);
       }
     </style>
 

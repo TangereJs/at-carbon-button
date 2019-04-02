@@ -128,15 +128,15 @@ Custom property | Description | Default
       }
 
       :host(.disabled-text) {
-        background: transparent;
-        color: var(--at-light-grey);
-        --primary-text-color: var(--at-light-grey);
+        background: transparent !important;
+        color: var(--at-light-grey) !important;
+        --primary-text-color: var(--at-light-grey) !important;
       }
 
       :host(.disabled-contained) {
-        background-color: var(--at-light-grey);
-        color: var(--at-grey);
-        --primary-text-color: var(--at-grey);
+        background-color: var(--at-light-grey) !important;
+        color: var(--at-grey) !important;
+        --primary-text-color: var(--at-grey) !important;
       }
 
       .button-icon {
@@ -188,57 +188,57 @@ Custom property | Description | Default
         for the buttonType/buttonColor and href/at-link use case we really need to modify the value for --primary-text-color
       */
       :host(.blue) {
-        color: var(--at-blue) !important;
+        color: var(--at-blue);
         --primary-text-color: var(--at-blue);
       }
 
       :host(.green) {
-        color: var(--at-green) !important;
+        color: var(--at-green);
         --primary-text-color: var(--at-green);
       }
 
       :host(.orange) {
-        color: var(--at-orange) !important;
+        color: var(--at-orange);
         --primary-text-color: var(--at-orange);
       }
 
       :host(.pink) {
-        color: var(--at-pink) !important;
+        color: var(--at-pink);
         --primary-text-color: var(--at-pink);
       }
 
       :host(.purple) {
-        color: var(--at-purple) !important;
+        color: var(--at-purple);
         --primary-text-color: var(--at-purple);
       }
 
       :host(.red) {
-        color: var(--at-red) !important;
+        color: var(--at-red);
         --primary-text-color: var(--at-red);
       }
 
       :host(.teal) {
-        color: var(--at-teal) !important;
+        color: var(--at-teal);
         --primary-text-color: var(--at-teal);
       }
 
       :host(.yellow) {
-        color: var(--at-yellow) !important;
+        color: var(--at-yellow);
         --primary-text-color: var(--at-yellow);
       }
 
       :host(.grey) {
-        color: var(--at-grey) !important;
+        color: var(--at-grey);
         --primary-text-color: var(--at-grey);
       }
 
       :host(.black) {
-        color: var(--at-black) !important;
+        color: var(--at-black);
         --primary-text-color: var(--at-black);
       }
 
       :host(.white) {
-        color: var(--at-white) !important;
+        color: var(--at-white);
         --primary-text-color: var(--at-white);
       }
 
@@ -335,6 +335,12 @@ Custom property | Description | Default
         background-color: var(--at-white) !important;
         color: var(--at-black, #000000) !important;
         --primary-text-color: var(--at-black, #000000) !important;
+      }
+
+      :host(.disabled-contained-white) {
+        background-color: var(--at-light-grey) !important;
+        color: var(--at-grey) !important;
+        --primary-text-color: var(--at-grey) !important;
       }
     </style>
 
@@ -487,10 +493,18 @@ Custom property | Description | Default
           this.classList.remove('disabled-text');
           this.classList.remove('disabeld-contained');
 
+          if(buttonType == 'contained' && buttonColor == 'white') {
+            this.classList.remove('disabled-contained-white');
+          }
+
         } else {
           this.classList.remove(colorClass);
           var className = 'disabled-' + buttonType;
           this.classList.add(className);
+
+          if(buttonType == 'contained' && buttonColor == 'white') {
+            this.classList.add('disabled-contained-white');
+          }
         }
       },
 
